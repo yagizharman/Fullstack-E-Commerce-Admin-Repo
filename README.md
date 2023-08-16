@@ -48,7 +48,15 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 DATABASE_URL=
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
 
+```
+
+### Connect to PlanetScale and Push Prisma
+
+```shell
+npx prisma generate
+npx prisma db push
 ```
 
 ### Start the app
