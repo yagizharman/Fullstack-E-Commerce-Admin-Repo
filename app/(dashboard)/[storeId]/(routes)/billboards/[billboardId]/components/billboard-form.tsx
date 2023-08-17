@@ -1,7 +1,6 @@
 "use client";
 
 import { AlertModal } from "@/components/modals/alert-modal";
-import { ApiAlert } from "@/components/ui/api-alert";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,14 +15,13 @@ import ImageUpload from "@/components/ui/image-upload";
 import { Input } from "@/components/ui/input";
 
 import { Separator } from "@/components/ui/separator";
-import { useOrigin } from "@/hooks/use-origin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Billboard } from "@prisma/client";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
 
@@ -43,7 +41,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -54,11 +51,11 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
   const action = initialData ? "Save changes" : "Create";
 
   const form = useForm<BillboardFormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       label: "",
       imageUrl: "",
     },
-    resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (data: BillboardFormValues) => {
@@ -89,7 +86,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
       toast.success("Billboard deleted successfully.");
     } catch (error) {
       toast.error(
@@ -170,7 +167,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
