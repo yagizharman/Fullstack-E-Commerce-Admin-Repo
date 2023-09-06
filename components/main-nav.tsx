@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
+import { ModeToggle } from "./mode-toggle";
 
 export function MainNav({
   className,
