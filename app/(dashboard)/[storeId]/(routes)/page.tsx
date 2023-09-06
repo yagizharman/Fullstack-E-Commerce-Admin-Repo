@@ -8,7 +8,7 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
-import { CreditCard, DollarSign } from "lucide-react";
+import { CreditCard, DollarSign, Package } from "lucide-react";
 
 interface DashboardPageProps {
   params: { storeId: string };
@@ -54,7 +54,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
               <CardTitle className="text-sm font-medium">
                 Products In Stock
               </CardTitle>
-              <CreditCard className="h-4 w-4 text-muted-foreground" />
+              <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{productsInStock}</div>
