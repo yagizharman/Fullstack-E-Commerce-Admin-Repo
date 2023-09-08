@@ -11,6 +11,7 @@ export async function PATCH(
         const body = await req.json();
         const { name,
             price,
+            stock,
             categoryId,
             colorId,
             sizeId,
@@ -27,6 +28,11 @@ export async function PATCH(
         if (!name) {
             return new NextResponse('Name is required', { status: 400 });
         }
+        if (!stock) {
+
+            return new NextResponse('Stock is required', { status: 400 });
+        }
+
         if (!price) {
             return new NextResponse('Price is required', { status: 400 });
         }
@@ -75,6 +81,7 @@ export async function PATCH(
                 categoryId,
                 colorId,
                 sizeId,
+                stock,
                 images: {
                     deleteMany: {},
                 },
