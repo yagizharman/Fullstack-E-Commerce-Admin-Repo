@@ -73,6 +73,9 @@ export async function GET(
         const size = await prismadb.size.findMany({
             where: {
                 storeId: params.storeId
+            },
+            orderBy: {
+                updatedAt: 'desc'
             }
         });
 
